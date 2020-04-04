@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',
@@ -12,7 +13,13 @@ module.exports = {
             use: {
                 loader: 'babel-loader',
                 options: {
-                    presets: ['@babel/preset-env']
+                    presets: [
+                        ['@babel/preset-env', {
+                            "useBuiltIns": "entry",
+                            "corejs": 3
+                        }]
+                    ],
+                    plugins: ["@babel/plugin-transform-runtime"]
                 }
             }
         }]
@@ -20,7 +27,10 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.html'
-        })
+        }),
+        new CopyWebpackPlugin([
+            { from: 'static', to: 'static' },
+        ])
     ],
     stats: {
         children: false
