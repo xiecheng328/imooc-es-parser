@@ -15,10 +15,10 @@ module.exports = {
                 options: {
                     presets: [
                         ['@babel/preset-env', {
-                            "useBuiltIns": "entry"
+                            'useBuiltIns': 'entry'
                         }]
                     ],
-                    plugins: ["@babel/plugin-transform-runtime"]
+                    plugins: ['@babel/plugin-transform-runtime']
                 }
             }
         }]
